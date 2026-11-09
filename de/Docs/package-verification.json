@@ -1,0 +1,17 @@
+{
+  "SourceBuildSucceeded": true,
+  "RebuiltMainAssemblyByteMatchesRelease": true,
+  "RebuiltMotionModuleMethodILMatchesRelease": true,
+  "ComparedModuleMethods": 16,
+  "ModuleFieldsMatch": true,
+  "RebuiltModuleMetadataMayDiffer": true,
+  "InstallerFixtureTestsPassed": true,
+  "WindowsPowerShell5Assertions": 89,
+  "DefaultDX11AndMultithreadedRendererVerified": true,
+  "NoSteamConfigurationChanges": true,
+  "NoVersionCheckInInstaller": true,
+  "NoDedicatedLauncher": true,
+  "NoAutomaticBackups": true,
+  "PrivacyScanPassed": true,
+  "DiagnosticDependenciesAbsent": true
+}

@@ -1,0 +1,15 @@
+Special K 26.10.10, official unmodified 32-bit binary
+Payload/dxgi.dll, GNU GPL version 3.
+Source: https://github.com/SpecialKO/SpecialK/tree/SK_26_10_10
+Release: https://github.com/SpecialKO/SpecialK/releases/tag/SK_26_10_10
+Corresponding source archive: https://github.com/SpecialKO/SpecialK/archive/refs/tags/SK_26_10_10.zip
+License text: SpecialK-LICENSE.txt
+
+Mono.Cecil 0.11.6, official .NET Framework 4.0 binary
+Source/lib/Mono.Cecil.dll, MIT license.
+Source: https://github.com/jbevain/cecil/tree/0.11.6
+Package: https://api.nuget.org/v3-flatcontainer/mono.cecil/0.11.6/mono.cecil.0.11.6.nupkg
+License text: Mono.Cecil-LICENSE.txt
+
+No game assembly is included. The installer modifies the user's own game assembly.
+The classic release does not include the DE motion/trail module.

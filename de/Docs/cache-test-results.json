@@ -1,0 +1,44 @@
+{
+  "file": "trail-cache-abba-20261109-190204.csv",
+  "phases": {
+    "baseline": {
+      "seconds": 14.49566,
+      "frames": 6405,
+      "render_fps": 441.71841778849665,
+      "p99_render_interval_ms": 3.50999999999857,
+      "mesh_update_mean_us": 21.277158469945356,
+      "mesh_update_median_us": 19.7,
+      "mesh_update_p99_us": 48.9,
+      "quads_update_mean_us": 1.6863231850117095,
+      "vertices_update_mean_us": 3.0905230288836845,
+      "full_upload_fraction": 1.0,
+      "quad_evaluations_per_active_quad_per_frame": 1.0,
+      "max_emitter_to_sprite_error_units": 0.0
+    },
+    "fixed": {
+      "seconds": 15.24691,
+      "frames": 6716,
+      "render_fps": 440.41710746636534,
+      "p99_render_interval_ms": 3.550000000004161,
+      "mesh_update_mean_us": 14.234097677188803,
+      "mesh_update_median_us": 10.1,
+      "mesh_update_p99_us": 42.5,
+      "quads_update_mean_us": 1.7954139368671829,
+      "vertices_update_mean_us": 3.270696843359142,
+      "full_upload_fraction": 0.2982430017867778,
+      "quad_evaluations_per_active_quad_per_frame": 1.0,
+      "max_emitter_to_sprite_error_units": 0.0
+    }
+  },
+  "validation": "checks=128 errors=0",
+  "mesh_cpu_reduction_percent": 33.10151025431847,
+  "render_fps_change_percent": -0.29460178016720295,
+  "checks": {
+    "less_full_uploads": true,
+    "mesh_cpu_cost_reduced": true,
+    "all_quads_still_update_every_frame": true,
+    "emitter_still_matches_sprite": true,
+    "render_fps_above_165": true,
+    "uploaded_data_matches_reference": true
+  }
+}

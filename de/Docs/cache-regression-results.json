@@ -1,0 +1,86 @@
+{
+  "file": "trail-cache-paired-20261109-185820.csv",
+  "phases": {
+    "baseline": {
+      "seconds": 14.24736,
+      "frames": 5603,
+      "render_fps": 393.1956516856456,
+      "p99_render_interval_ms": 4.21999999999656,
+      "mesh_update_mean_us": 24.285811172586115,
+      "mesh_update_median_us": 22.1,
+      "mesh_update_p99_us": 66.9,
+      "quads_update_mean_us": 2.2759771550954846,
+      "vertices_update_mean_us": 3.6941816883812244,
+      "full_upload_fraction": 1.0,
+      "quad_evaluations_per_active_quad_per_frame": 1.0,
+      "max_emitter_to_sprite_error_units": 0.0
+    },
+    "fixed": {
+      "seconds": 14.248930000000001,
+      "frames": 5476,
+      "render_fps": 384.2393779743461,
+      "p99_render_interval_ms": 4.1399999999995885,
+      "mesh_update_mean_us": 17.222242512783055,
+      "mesh_update_median_us": 12.9,
+      "mesh_update_p99_us": 54.4,
+      "quads_update_mean_us": 2.3822680788897004,
+      "vertices_update_mean_us": 3.8503469685902116,
+      "full_upload_fraction": 0.32724616508400295,
+      "quad_evaluations_per_active_quad_per_frame": 1.0,
+      "max_emitter_to_sprite_error_units": 0.0
+    },
+    "paused": {
+      "seconds": 1.8922799999999995,
+      "frames": 748,
+      "render_fps": 394.7618745640181,
+      "p99_render_interval_ms": 3.7999999999982492,
+      "mesh_update_mean_us": null,
+      "mesh_update_median_us": null,
+      "mesh_update_p99_us": null,
+      "quads_update_mean_us": 0.0,
+      "vertices_update_mean_us": 0.0,
+      "full_upload_fraction": 0,
+      "quad_evaluations_per_active_quad_per_frame": 0.0,
+      "max_emitter_to_sprite_error_units": 0.02815999999999974
+    },
+    "resume": {
+      "seconds": 2.246229999999997,
+      "frames": 856,
+      "render_fps": 380.63777974650907,
+      "p99_render_interval_ms": 4.0000000000048885,
+      "mesh_update_mean_us": 16.44193925233645,
+      "mesh_update_median_us": 12.3,
+      "mesh_update_p99_us": 45.5,
+      "quads_update_mean_us": 2.22161214953271,
+      "vertices_update_mean_us": 3.614953271028037,
+      "full_upload_fraction": 0.3282710280373832,
+      "quad_evaluations_per_active_quad_per_frame": 1.0,
+      "max_emitter_to_sprite_error_units": 0.0
+    },
+    "teleport": {
+      "seconds": 4.247579999999999,
+      "frames": 1648,
+      "render_fps": 387.75020129108816,
+      "p99_render_interval_ms": 3.8700000000062573,
+      "mesh_update_mean_us": 17.366565533980584,
+      "mesh_update_median_us": 12.4,
+      "mesh_update_p99_us": 56.7,
+      "quads_update_mean_us": 2.2568567961165047,
+      "vertices_update_mean_us": 3.7460558252427183,
+      "full_upload_fraction": 0.32524271844660196,
+      "quad_evaluations_per_active_quad_per_frame": 1.0,
+      "max_emitter_to_sprite_error_units": 0.0
+    }
+  },
+  "validation": "checks=160 errors=0",
+  "mesh_cpu_reduction_percent": 29.08516668274369,
+  "render_fps_change_percent": -2.27781606253874,
+  "checks": {
+    "less_full_uploads": true,
+    "mesh_cpu_cost_reduced": true,
+    "all_quads_still_update_every_frame": true,
+    "emitter_still_matches_sprite": true,
+    "render_fps_above_165": true,
+    "uploaded_data_matches_reference": true
+  }
+}

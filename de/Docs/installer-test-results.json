@@ -1,0 +1,20 @@
+{
+  "PowerShellVersion": "5.1.26100.9818",
+  "ParsedScripts": 6,
+  "Assertions": 89,
+  "OverwritesArbitraryDllWithoutVersionGate": true,
+  "NoOriginalFileBackups": true,
+  "NoSettingsBackups": true,
+  "RepeatInstallationCreatesNoBackups": true,
+  "NoTemporaryFilesLeft": true,
+  "ExplicitGameFolderNeedsNoSteam": true,
+  "RegistryAndLibraryAutodetectionPassed": true,
+  "PackageBesideGameDetectionPassed": true,
+  "NoSteamUserConfigChanges": true,
+  "NoSteamRestartOrProcessControl": true,
+  "NoDedicatedLauncher": true,
+  "OnlyVsyncSettingByteChanged": true,
+  "MissingPlayerSettingsSupported": true,
+  "SaveFixtureUnchanged": true,
+  "RealProcessesAndRegistryIsolated": true
+}

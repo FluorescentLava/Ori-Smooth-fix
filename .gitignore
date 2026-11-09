@@ -1,0 +1,12 @@
+# Game-owned assemblies are generated locally and shipped only in the DE release.
+de/Payload/oriDE_Data/
+**/Build/
+**/.intermediate/
+**/__pycache__/
+**/SHA256SUMS.txt
+dist/
+*.zip
+*.bak
+*.sav
+*.vdf
+*.log

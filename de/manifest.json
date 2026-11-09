@@ -1,0 +1,37 @@
+{
+  "name": "Ori DE Smooth v4 - One-time file installer",
+  "version": 4,
+  "game": "Ori and the Blind Forest: Definitive Edition",
+  "platform": "Windows / Steam / x86",
+  "steamAppId": 387290,
+  "unityVersion": "5.3.2f1",
+  "patchedAssemblySHA256": "7AC7BC8E36087B99E63A203BFCADEC69B35AE7DEC3FC8D9AB37777CD82F52921",
+  "motionModuleSHA256": "FCB696D3A1F94F1E3F708DCFB6A94C715E4AAD4DD9456249F00AA4A015EE046D",
+  "specialKVersion": "26.10.10",
+  "specialKSHA256": "57FE753B29D820B3911610C89DA17B14807D6E1884E457E6D4AE063B831586AD",
+  "launchArguments": [],
+  "fpsLimit": -1,
+  "physicsStepHz": 60,
+  "features": [
+    "Uncapped rendering",
+    "Native unsynced physics timing",
+    "Render interpolation for camera and player sprite",
+    "Render-aligned player ghost trails",
+    "Full-rate ghost mesh updates",
+    "Cache unchanged trail mesh submissions"
+  ],
+  "diagnosticsIncludedInRuntime": false,
+  "savesIncluded": false,
+  "referenceOriginalAssemblySHA256": "5EF5E1D6ED923D26EB72A75FF862D7635B8D18DF414AC36E4517012C420A3185",
+  "installer": {
+    "entryPoint": "Install.cmd",
+    "versionOrHashGate": false,
+    "copiesPrebuiltPayloadUnconditionally": true,
+    "automaticBackups": false,
+    "modifiesSteamUserConfiguration": false,
+    "requiresSteamRestart": false,
+    "requiresDedicatedLauncher": false,
+    "disablesGameVsync": true,
+    "normalLaunchAfterInstall": true
+  }
+}

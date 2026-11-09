@@ -1,0 +1,7 @@
+{
+  "Running": true,
+  "NoForcedGraphicsArguments": true,
+  "DefaultDirect3D11": true,
+  "DefaultThreadedRenderer": true,
+  "MotionModuleLoaded": true
+}

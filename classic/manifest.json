@@ -1,0 +1,24 @@
+{
+  "name": "Ori Classic Smooth fix",
+  "version": "1.0.0-experimental",
+  "steamAppId": 261570,
+  "status": "experimental-prerelease",
+  "game": "Ori and the Blind Forest (2015)",
+  "entryPoint": "Install.cmd",
+  "automaticBackups": false,
+  "versionOrHashGate": false,
+  "requiresDotNetSDK": false,
+  "requiresPowerShell": "Windows PowerShell 5.1 / .NET Framework 4.x",
+  "modifiesSteamConfiguration": false,
+  "features": [
+    "Runtime rendering target frame rate -1",
+    "Runtime VSync 0",
+    "No redundant engine setter calls",
+    "Optional Special K DXGI profile"
+  ],
+  "motionInterpolationIncluded": false,
+  "trailInterpolationIncluded": false,
+  "classicGameRuntimeTested": false,
+  "syntheticPatchedAssemblyExecuted": true,
+  "shippedGameAssemblies": false
+}

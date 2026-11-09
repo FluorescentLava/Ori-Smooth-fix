@@ -1,0 +1,16 @@
+Special K 26.10.10 (32-bit, installed as Payload/dxgi.dll)
+Copyright Kaldaien and Special K contributors. GNU GPL version 3.
+Official release: https://github.com/SpecialKO/SpecialK/releases/tag/SK_26_10_10
+Corresponding source: https://github.com/SpecialKO/SpecialK/tree/SK_26_10_10
+Download corresponding source: https://github.com/SpecialKO/SpecialK/archive/refs/tags/SK_26_10_10.zip
+The Special K binary is unmodified; its INI profile is configured for Ori DE.
+Full license text: SpecialK-LICENSE.txt
+
+Mono.Cecil 0.11.6 (build-time dependency only)
+Copyright Jb Evain and contributors. MIT license.
+Source: https://github.com/jbevain/cecil/tree/0.11.6
+Full license text: Mono.Cecil-LICENSE.txt
+
+Assembly-CSharp.dll is a modified game assembly for the supported Ori DE build.
+The game and its original code remain the property of their respective owners.
+The source project requires reference DLLs from an installed copy of the game.

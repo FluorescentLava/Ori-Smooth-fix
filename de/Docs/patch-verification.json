@@ -1,0 +1,25 @@
+{
+  "Version": 4,
+  "OriginalAssemblySHA256": "5EF5E1D6ED923D26EB72A75FF862D7635B8D18DF414AC36E4517012C420A3185",
+  "PatchedAssemblySHA256": "7AC7BC8E36087B99E63A203BFCADEC69B35AE7DEC3FC8D9AB37777CD82F52921",
+  "MotionModuleSHA256": "FCB696D3A1F94F1E3F708DCFB6A94C715E4AAD4DD9456249F00AA4A015EE046D",
+  "ChangedGameMethods": [
+    "System.Void GameController::Awake()",
+    "System.Void GameController::Update()",
+    "System.Void UberGhostTrail::Update()",
+    "System.Void UberGhostTrailMeshUpdate::ReallocateBuffers()",
+    "System.Void UberGhostTrailMeshUpdate::SetSettings(UberGhostTrail)",
+    "System.Void UberGhostTrailMeshUpdate::SpawnSingleTrailSprite(System.Single,System.Single,UnityEngine.Vector4,UnityEngine.Vector3,UnityEngine.Quaternion,UnityEngine.Vector3)",
+    "System.Void UberGhostTrailMeshUpdate::UpdateQuads()",
+    "System.Void UberGhostTrailMeshUpdate::RemoveQuad(System.Int32,System.Int32)",
+    "System.Void UberGhostTrailMeshUpdate::UpdateTrailMesh()",
+    "System.Void UberGhostTrailMeshUpdate::UpdateMeshVertPart()"
+  ],
+  "AwakeChange": "targetFrameRate: 60 -> -1",
+  "UpdateChange": "Insert OriMotionSmoothing.Install() before original instructions",
+  "TrailChange": "Player-only render-pose emission, full quad updates; preserve legacy drift with delta/5",
+  "AllOtherGameMethodsUnchanged": true,
+  "NoDiagnosticDependencies": true,
+  "NoRigidbodyWritesOrFixedTimestepChanges": true,
+  "NoProductionFileIO": true
+}
