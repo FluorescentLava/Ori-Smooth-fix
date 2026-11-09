@@ -1,45 +1,32 @@
-﻿Ori DE Smooth v4 —— 一次安装，正常启动
+Ori-Smooth-fix · 终极版
 
-适用游戏：Windows Steam《精灵与森林：终极版》
-Ori and the Blind Forest: Definitive Edition，AppID 387290，32 位。
+适用游戏
+Windows Steam《Ori and the Blind Forest: Definitive Edition》
+AppID 387290，32 位。
 
 安装
-1. 关闭游戏，把整个 ZIP 解压到一个文件夹。
-2. 双击 Install.cmd，等待显示 Installed。
-3. 以后照常从 Steam、原快捷方式或 oriDE.exe 启动。
+1. 关闭游戏并解压安装包。
+2. 双击 Install.cmd。
+3. 从 Steam 或原快捷方式启动游戏。
 
-安装器会自动寻找游戏、直接替换补丁并关闭垂直同步，不生成备份。
-不做游戏版本或哈希校验，不要求手填 Steam 参数，也不使用专用启动器。
-不修改 Steam 用户配置，不退出 Steam，不更改 .sav 存档。
+安装器自动定位游戏目录并替换文件。也可将 Payload 文件夹中的内容
+覆盖到 oriDE.exe 所在目录。安装无需编译环境或额外启动参数；
+文件覆盖不保留备份。
 
-如果自动寻找目录失败：
-把本包全部内容放到 oriDE.exe 旁边，再双击 Install.cmd 即可。
-也可以在终端执行：Install.cmd -GameDirectory "D:\SteamLibrary\steamapps\common\Ori DE"
-
-安装进去的文件
-dxgi.dll
-dxgi.ini
-oriDE_Data\Managed\Assembly-CSharp.dll
-oriDE_Data\Managed\OriMotionSmoothing.dll
+自动定位失败时，将安装包放在 oriDE.exe 旁运行，或执行：
+Install.cmd -GameDirectory "D:\SteamLibrary\steamapps\common\Ori DE"
 
 功能
-- 解除启动时的 60 FPS 目标值，渲染不限帧。
-- Special K 的四核心报告配置及 Flip Discard 呈现。
-- 镜头与角色显示位置插值，物理步长保持 60 Hz。
-- 角色残影按显示位置采样，残影顶点、缩放及淡出逐帧更新。
-- 缓存未变化的 UV、索引及材质提交。
+- 渲染不限帧，关闭垂直同步。
+- 镜头和角色显示位置插值，保持 60 Hz 物理模拟。
+- 按显示位置采样角色拖尾，逐帧更新网格。
+- 缓存未变化的拖尾 UV、索引和材质提交。
+- Special K 核心报告与 Flip Discard 呈现配置。
 
-源码
-普通玩家使用预编译 Payload，无需编译环境。
-开发者构建需要 PowerShell 7、.NET SDK 6 或更新版本，以及游戏原有引用 DLL。
-从本包根目录运行：
-pwsh -File .\Source\Build.ps1 -GameDirectory "D:\SteamLibrary\steamapps\common\Ori DE" -OriginalAssembly "D:\Originals\Assembly-CSharp.dll"
--OriginalAssembly 指向未修改的游戏程序集。默认构建到 Build\Payload。
-源代码构建的补丁脚本会检查要修改的方法结构，普通安装器直接覆盖预编译文件。
+卸载
+关闭游戏，移除 dxgi.dll、dxgi.ini 和
+oriDE_Data\Managed\OriMotionSmoothing.dll，
+通过 Steam 验证游戏文件恢复原程序集。
+垂直同步可在游戏设置中开启。
 
-还原
-关闭游戏，通过 Steam 验证游戏文件恢复原程序集，并移除补丁添加的 dxgi.dll、dxgi.ini 和 OriMotionSmoothing.dll。
-垂直同步设置可在游戏内重新开启。
-
-详细实测与效果边界见 Docs\Validation.md，第三方许可证及来源见 ThirdParty。
-manifest.json 与 SHA256SUMS.txt 仅记录构建和文件信息，不参与安装校验。
+源码构建见 README.md，验证数据见 Docs，许可证和来源见 ThirdParty。

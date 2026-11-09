@@ -1,4 +1,4 @@
-"""Package the selected edition without creating installation backups."""
+"""Build an edition archive with file checksums."""
 import argparse
 import hashlib
 import json
@@ -58,7 +58,6 @@ def package(edition):
                 raise SystemExit('ZIP content differs: ' + relative)
     summary = {'archive': archive.name, 'edition': edition, 'files': len(files),
                'bytes': archive.stat().st_size, 'sha256': digest(archive.read_bytes())}
-    (destination / (name + '.sha256.txt')).write_text(summary['sha256'] + '  ' + archive.name + '\n', encoding='ascii')
     print(json.dumps(summary, indent=2))
 
 if __name__ == '__main__':

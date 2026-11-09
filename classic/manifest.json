@@ -1,7 +1,7 @@
 {
-  "name": "Ori Smooth fix for Ori and the Blind Forest (2015)",
+  "name": "Ori-Smooth-fix for Ori and the Blind Forest",
   "version": "4.0.0",
-  "releaseTag": "classic-v4.0.0",
+  "releaseTag": "v4.0.0",
   "game": "Ori and the Blind Forest (2015 original game)",
   "platform": "Windows / Steam / x86",
   "steamAppId": 261570,
@@ -36,6 +36,5 @@
     "requiresDedicatedLauncher": false,
     "disablesGameVsync": true,
     "normalLaunchAfterInstall": true
-  },
-  "replacesRelease": "classic-v1.0.0-experimental"
+  }
 }

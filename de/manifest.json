@@ -1,6 +1,6 @@
 {
-  "name": "Ori DE Smooth v4 - One-time file installer",
-  "version": 4,
+  "name": "Ori-Smooth-fix for Ori and the Blind Forest: Definitive Edition",
+  "version": "4.0.0",
   "game": "Ori and the Blind Forest: Definitive Edition",
   "platform": "Windows / Steam / x86",
   "steamAppId": 387290,
@@ -33,5 +33,6 @@
     "requiresDedicatedLauncher": false,
     "disablesGameVsync": true,
     "normalLaunchAfterInstall": true
-  }
+  },
+  "releaseTag": "v4.0.0"
 }

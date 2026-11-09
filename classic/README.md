@@ -1,47 +1,52 @@
-# Ori Smooth fix — 2015 原版
+# Ori-Smooth-fix · 2015 原版
 
-适用于 Windows Steam《Ori and the Blind Forest》2015 原版（AppID 261570）。
+适用于 Windows Steam《Ori and the Blind Forest》（AppID 261570，32 位）。
 
-**解压 → 双击 `Install.cmd` → 以后照常启动游戏。**
+## 功能
 
-`classic` 和 `de` 区分的是游戏版本，两者均提供完整的流畅度修复功能。本包已取代旧的 `classic-v1.0.0-experimental` 基础解锁包。
+- 渲染不限帧，关闭垂直同步。
+- 镜头和角色显示位置插值，保持 60 Hz 物理模拟。
+- 按显示位置采样角色拖尾，逐帧更新网格。
+- 缓存未变化的拖尾 UV、索引和材质提交。
+- Special K 核心报告与 Flip Discard 呈现配置。
 
-- 解除渲染帧率上限，运行时关闭引擎 VSync。
-- 镜头和角色视觉位置按渲染帧插值。
-- 使用原生非同步时序，保留 60 Hz 物理步长。
-- 角色拖尾在插值后的视觉位置生成，每个渲染帧更新完整拖尾网格。
-- 缓存未变化的拖尾网格拓扑、UV 和材质提交，减少重复上传。
-- 附带 Special K 的 32 位本地插件与不限帧配置。
+## 安装
 
-安装器直接覆盖四个运行文件，不生成备份、不做版本或哈希检查、不写 Steam 参数，不需要专用启动器、.NET SDK 或编译工具。也可以把 `Payload` **里面**的内容直接覆盖到 `ori.exe` 所在目录。下次正常启动即生效。
+1. 关闭游戏并解压安装包。
+2. 双击 `Install.cmd`。
+3. 从 Steam 或原快捷方式启动游戏。
 
-自动定位失败时，把安装包放在 `ori.exe` 旁边后运行 `Install.cmd`，也可执行：
+安装器自动定位游戏目录并替换文件。也可将 `Payload` 文件夹中的内容覆盖到 `ori.exe` 所在目录。安装无需编译环境或额外启动参数；文件覆盖不保留备份。
+
+自动定位失败时，将安装包放在 `ori.exe` 旁运行，或指定游戏目录：
 
 ```powershell
 Install.cmd -GameDirectory "D:\SteamLibrary\steamapps\common\Ori"
 ```
 
-安装后的文件：
+补丁运行文件：
 
 ```text
-Ori/
-  dxgi.dll
-  dxgi.ini
-  ori_Data/Managed/
-    Assembly-CSharp.dll
-    OriMotionSmoothing.dll
+dxgi.dll
+dxgi.ini
+ori_Data/Managed/Assembly-CSharp.dll
+ori_Data/Managed/OriMotionSmoothing.dll
 ```
 
-游戏目录内的 `ori_Data` 是原版目录；DE 使用 `oriDE_Data`。两个游戏的程序集不可交叉替换。
+## 效果与适用范围
 
-渲染不限帧会增加负载；实际帧率取决于硬件、场景和温度。位置插值和拖尾按渲染帧更新，原游戏逐帧制作的角色动画素材仍使用原来的动画帧数。
+补丁改善显示位置和拖尾的更新频率，角色姿态素材保持原有动画帧数。显示插值可能增加约一个物理步的延迟，实际帧率取决于硬件和场景。测试数据见 [验证记录](Docs/Validation.md)。
 
-验证记录见 `Docs/Validation.md`。本包基于实际原版程序集构建；发行包包含预编译文件，源码仓库提供可复现的补丁构建脚本。开发者使用 PowerShell 7 和 .NET SDK 构建：
+## 卸载
+
+关闭游戏，移除 `dxgi.dll`、`dxgi.ini` 和 `ori_Data/Managed/OriMotionSmoothing.dll`，通过 Steam 验证游戏文件恢复原程序集。
+
+## 源码与构建
+
+`Source` 包含辅助模块和构建脚本，`Docs` 保存验证数据，`ThirdParty` 包含许可证和来源链接。
+
+构建需要 PowerShell 7、.NET SDK 6 或更新版本、游戏引用 DLL 和未修改的 `Assembly-CSharp.dll`。在安装包根目录执行：
 
 ```powershell
-pwsh -File Source/Build.ps1 -GameDirectory "D:\SteamLibrary\steamapps\common\Ori" -OriginalAssembly "D:\Original\Assembly-CSharp.dll" -OutputDirectory "D:\Build\Ori-Classic"
+pwsh -File .\Source\Build.ps1 -GameDirectory "D:\SteamLibrary\steamapps\common\Ori" -OriginalAssembly "D:\Originals\Assembly-CSharp.dll" -OutputDirectory .\Build\Payload
 ```
-
-`OriginalAssembly` 必须指向未修改的原版程序集；省略时使用游戏当前的程序集。构建与测试脚本只面向开发者，普通玩家直接安装发行包即可。
-
-卸载时关闭游戏，删除游戏目录的 `dxgi.dll`、`dxgi.ini` 和 `ori_Data/Managed/OriMotionSmoothing.dll`，再用 Steam 验证游戏文件恢复原版程序集。

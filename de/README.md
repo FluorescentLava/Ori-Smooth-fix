@@ -1,13 +1,52 @@
-# Ori DE Smooth v4
+# Ori-Smooth-fix · 终极版
 
-**解压 → 双击 `Install.cmd` → 下次照常启动游戏。**
+适用于 Windows Steam《Ori and the Blind Forest: Definitive Edition》（AppID 387290，32 位）。
 
-适用：Windows Steam《精灵与森林：终极版》（Ori and the Blind Forest: Definitive Edition，AppID 387290，32 位）。
+## 功能
 
-安装器自动找到游戏目录、直接覆盖补丁，并关闭游戏垂直同步。不生成备份，没有版本校验或确认步骤；不写入 Steam 启动参数，不需要专用启动器。Steam 可以保持运行。
+- 渲染不限帧，关闭垂直同步。
+- 镜头和角色显示位置插值，保持 60 Hz 物理模拟。
+- 按显示位置采样角色拖尾，逐帧更新网格。
+- 缓存未变化的拖尾 UV、索引和材质提交。
+- Special K 核心报告与 Flip Discard 呈现配置。
 
-补丁包含不限帧、镜头与角色显示插值、角色拖尾逐帧更新，以及拖尾重复数据提交缓存。物理步长保持 60 Hz。
+## 安装
 
-`Payload` 是预编译运行文件，`Source` 是完整源码与构建脚本，`Docs` 是测试记录，`ThirdParty` 是许可证和第三方源码链接。普通玩家只需运行一次安装脚本。
+1. 关闭游戏并解压安装包。
+2. 双击 `Install.cmd`。
+3. 从 Steam 或原快捷方式启动游戏。
 
-详细操作及源码构建见 [安装说明.txt](安装说明.txt)。
+安装器自动定位游戏目录并替换文件。也可将 `Payload` 文件夹中的内容覆盖到 `oriDE.exe` 所在目录。安装无需编译环境或额外启动参数；文件覆盖不保留备份。
+
+自动定位失败时，将安装包放在 `oriDE.exe` 旁运行，或指定游戏目录：
+
+```powershell
+Install.cmd -GameDirectory "D:\SteamLibrary\steamapps\common\Ori DE"
+```
+
+补丁运行文件：
+
+```text
+dxgi.dll
+dxgi.ini
+oriDE_Data/Managed/Assembly-CSharp.dll
+oriDE_Data/Managed/OriMotionSmoothing.dll
+```
+
+## 效果与适用范围
+
+补丁改善显示位置和拖尾的更新频率，角色姿态素材保持原有动画帧数。显示插值可能增加约一个物理步的延迟，实际帧率取决于硬件和场景。测试数据见 [验证记录](Docs/Validation.md)。
+
+## 卸载
+
+关闭游戏，移除 `dxgi.dll`、`dxgi.ini` 和 `oriDE_Data/Managed/OriMotionSmoothing.dll`，通过 Steam 验证游戏文件恢复原程序集。
+
+## 源码与构建
+
+`Source` 包含辅助模块和构建脚本，`Docs` 保存验证数据，`ThirdParty` 包含许可证和来源链接。
+
+构建需要 PowerShell 7、.NET SDK 6 或更新版本、游戏引用 DLL 和未修改的 `Assembly-CSharp.dll`。在安装包根目录执行：
+
+```powershell
+pwsh -File .\Source\Build.ps1 -GameDirectory "D:\SteamLibrary\steamapps\common\Ori DE" -OriginalAssembly "D:\Originals\Assembly-CSharp.dll" -OutputDirectory .\Build\Payload
+```
