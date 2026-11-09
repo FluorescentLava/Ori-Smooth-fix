@@ -1,6 +1,6 @@
 param([string]$GameDirectory='',[string]$SteamDirectory='',[switch]$Elevated)
 $ErrorActionPreference='Stop'
-. (Join-Path $PSScriptRoot 'Source\Patch-Classic.ps1')
+. (Join-Path $PSScriptRoot 'Install-Core.ps1')
 try {
     if(!$GameDirectory -and (Test-Path -LiteralPath (Join-Path $PSScriptRoot 'ori.exe'))){$GameDirectory=$PSScriptRoot}
     if(!$GameDirectory) {
@@ -32,16 +32,14 @@ try {
     catch [UnauthorizedAccessException] {
         if($Elevated){throw}
         $oriElevationArguments=@('-NoProfile','-ExecutionPolicy','Bypass','-File',('"'+$PSCommandPath+'"'),'-GameDirectory',('"'+$GameDirectory+'"'),'-Elevated')
-        $oriChild=Start-Process -FilePath (Join-Path $env:SystemRoot 'System32\WindowsPowerShell\v1.0\powershell.exe') -ArgumentList $oriElevationArguments -Verb RunAs -Wait -PassThru
+        $oriChild=Start-Process -FilePath (Join-Path $env:SystemRoot 'System32\WindowsPowerShell\v1.0\powershell.exe') -ArgumentList $oriElevationArguments -Verb RunAs -WindowStyle Hidden -Wait -PassThru
         exit $oriChild.ExitCode
     }
     foreach($oriProcess in @(Get-Process ori -ErrorAction SilentlyContinue)) {
         $null=$oriProcess.CloseMainWindow()
         if(!$oriProcess.WaitForExit(10000)){throw 'Exit Ori, then run Install.cmd again.'}
     }
-    $oriManaged=Join-Path $GameDirectory 'ori_Data\Managed'
-    Invoke-OriClassicPatch -AssemblyPath (Join-Path $oriManaged 'Assembly-CSharp.dll') -ManagedDirectory $oriManaged | Out-Null
-    foreach($oriFile in Get-ChildItem -LiteralPath (Join-Path $PSScriptRoot 'Payload') -File){Copy-Item -LiteralPath $oriFile.FullName -Destination (Join-Path $GameDirectory $oriFile.Name) -Force}
-    Write-Output 'Installed Classic experimental frame unlock. Launch Ori normally.'
+    Copy-OriRuntime -PayloadDirectory (Join-Path $PSScriptRoot 'Payload') -GameDirectory $GameDirectory
+    Write-Output 'Installed Ori Smooth for the original 2015 game. Launch Ori normally.'
 }
 catch {Write-Error ($_.Exception.Message+"`n"+$_.ScriptStackTrace);exit 1}

@@ -9,7 +9,7 @@ import zipfile
 ROOT = Path(__file__).resolve().parent.parent
 EDITIONS = {
     'de': ('de', 'Ori-Smooth-fix-DE-v4.0.0'),
-    'classic': ('classic', 'Ori-Smooth-fix-Classic-v1.0.0-experimental'),
+    'classic': ('classic', 'Ori-Smooth-fix-Classic-v4.0.0'),
 }
 
 def digest(data):
@@ -18,11 +18,11 @@ def digest(data):
 def package(edition):
     folder, name = EDITIONS[edition]
     source = ROOT / folder
-    if edition == 'de':
-        for required in ['Payload/oriDE_Data/Managed/Assembly-CSharp.dll',
-                         'Payload/oriDE_Data/Managed/OriMotionSmoothing.dll']:
-            if not (source / required).is_file():
-                raise SystemExit('Build DE first; missing ' + required)
+    data_folder = 'oriDE_Data' if edition == 'de' else 'ori_Data'
+    for dll in ['Assembly-CSharp.dll', 'OriMotionSmoothing.dll']:
+        required = 'Payload/' + data_folder + '/Managed/' + dll
+        if not (source / required).is_file():
+            raise SystemExit('Build ' + edition + ' first; missing ' + required)
     files = []
     for path in sorted(source.rglob('*')):
         relative = path.relative_to(source)

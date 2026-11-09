@@ -1,0 +1,188 @@
+{
+  "game": "Ori and the Blind Forest (2015 original)",
+  "steamAppId": 261570,
+  "unityVersion": "5.0.0b5",
+  "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+  "displayHz": 165,
+  "gameResolution": "1920x1080",
+  "graphicsAPI": "Direct3D 11.0",
+  "threadedRendering": true,
+  "launchArguments": [],
+  "localSpecialKModuleLoaded": true,
+  "scene": "Mount Horu / volcano area",
+  "instrumentation": "Temporary managed probe: frame-end Stopwatch, fixed positions, OnPreRender display positions",
+  "saveIsolation": "Separate copied save directory in diagnostic assembly only",
+  "originalSaveAndSettingsFilesCompared": 7,
+  "originalSaveAndSettingsHashesUnchanged": true,
+  "modes": {
+    "baseline": {
+      "frames": 20125,
+      "realRange": [
+        110.3472735,
+        174.08137
+      ],
+      "sampledSeconds": 63.7359138,
+      "fps": 315.7560439652785,
+      "medianMs": 2.8227,
+      "p95Ms": 5.6723,
+      "p99Ms": 6.7624,
+      "framesOver6_06ms": 592,
+      "sameFixedPairs": 16310,
+      "sameFixedSpriteChanges": 0,
+      "sameFixedCameraChanges": 0,
+      "sameFixedPhysicalChanges": 0,
+      "renderObserved": 20125,
+      "meshCalls": 17900.0,
+      "meshFrames": 17900,
+      "timeScales": [
+        1.0
+      ],
+      "fixedDeltas": [
+        0.01666667
+      ],
+      "targetFPS": [
+        -1.0
+      ],
+      "vsync": [
+        0.0
+      ],
+      "physicsOption": [
+        2.0
+      ],
+      "physicsSynced": [
+        "False"
+      ],
+      "resolution": [
+        "1920x1080"
+      ],
+      "spawnMethodCalls": 7084.0
+    },
+    "cache-off": {
+      "frames": 14085,
+      "realRange": [
+        176.0871208,
+        218.9984501
+      ],
+      "sampledSeconds": 42.910531799999994,
+      "fps": 328.2410962802377,
+      "medianMs": 2.7335,
+      "p95Ms": 5.4168,
+      "p99Ms": 6.7939,
+      "framesOver6_06ms": 314,
+      "sameFixedPairs": 11517,
+      "sameFixedSpriteChanges": 10119,
+      "sameFixedCameraChanges": 11499,
+      "sameFixedPhysicalChanges": 0,
+      "renderObserved": 14085,
+      "meshCalls": 12741.0,
+      "meshFrames": 12741,
+      "timeScales": [
+        1.0
+      ],
+      "fixedDeltas": [
+        0.01666667
+      ],
+      "targetFPS": [
+        -1.0
+      ],
+      "vsync": [
+        0.0
+      ],
+      "physicsOption": [
+        2.0
+      ],
+      "physicsSynced": [
+        "False"
+      ],
+      "resolution": [
+        "1920x1080"
+      ],
+      "spawnMethodCalls": 4962.0
+    },
+    "smooth": {
+      "frames": 8211,
+      "realRange": [
+        76.0026156,
+        108.3434038
+      ],
+      "sampledSeconds": 32.341991900000004,
+      "fps": 253.88046677483706,
+      "medianMs": 3.8821,
+      "p95Ms": 5.9823,
+      "p99Ms": 6.9768,
+      "framesOver6_06ms": 362,
+      "sameFixedPairs": 6274,
+      "sameFixedSpriteChanges": 4049,
+      "sameFixedCameraChanges": 6249,
+      "sameFixedPhysicalChanges": 0,
+      "renderObserved": 8211,
+      "meshCalls": 6748.0,
+      "meshFrames": 6748,
+      "timeScales": [
+        1.0
+      ],
+      "fixedDeltas": [
+        0.01666667
+      ],
+      "targetFPS": [
+        -1.0
+      ],
+      "vsync": [
+        0.0
+      ],
+      "physicsOption": [
+        2.0
+      ],
+      "physicsSynced": [
+        "False"
+      ],
+      "resolution": [
+        "1920x1080"
+      ],
+      "spawnMethodCalls": 460.0
+    }
+  },
+  "modeDefinitions": {
+    "smooth": "All production features enabled",
+    "baseline": "Uncapped rendering and native unsynchronized timing retained; interpolation, trail changes and upload cache disabled",
+    "cache-off": "Interpolation and trail changes enabled; upload cache disabled"
+  },
+  "performanceComparisonControlled": false,
+  "meshReadbackValidation": {
+    "separateRunExcludedFromFPS": true,
+    "samples": 240,
+    "cacheDisabled": 113,
+    "cacheEnabled": 127,
+    "errors": [],
+    "compared": [
+      "vertices",
+      "uv",
+      "uv2",
+      "colors32",
+      "Quads indices per submesh",
+      "sharedMesh",
+      "submesh count",
+      "material references",
+      "textures",
+      "screen parameters",
+      "atlas parameters"
+    ]
+  },
+  "productionInstallation": {
+    "installedWithReleaseInstaller": true,
+    "assemblySHA256": "AED0FE920C134FE0D1DA066D68AD868A36596D5F0D9ADD79CC1A55F2684AED59",
+    "helperSHA256": "CD91BB5950C5EAE516D58E91525A93AA96C3D7E9DF147341F8C8124033542D85",
+    "normalZeroArgumentStartupObserved": true,
+    "helperLoaded": true,
+    "diagnosticReferencePresent": false,
+    "diagnosticModuleLoaded": false,
+    "originalSaveFolderRestored": true
+  },
+  "limits": [
+    "Application render frame rate, not PresentMon or display present interval",
+    "Different paths and scene loads across modes; FPS ratios are not optimization benchmarks",
+    "Spawn method entry counts do not equal successful ghost emissions",
+    "No full-map or full-skill coverage; no guarantee of 165 FPS in all scenes",
+    "Original pose animation frame count is unchanged"
+  ]
+}

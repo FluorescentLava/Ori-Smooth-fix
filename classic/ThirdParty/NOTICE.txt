@@ -11,5 +11,7 @@ Source: https://github.com/jbevain/cecil/tree/0.11.6
 Package: https://api.nuget.org/v3-flatcontainer/mono.cecil/0.11.6/mono.cecil.0.11.6.nupkg
 License text: Mono.Cecil-LICENSE.txt
 
-No game assembly is included. The installer modifies the user's own game assembly.
-The classic release does not include the DE motion/trail module.
+The classic release includes a patched assembly for the 2015 original game and
+OriMotionSmoothing.dll built from classic/Source. Source-controlled build scripts
+apply the scoped changes to the user's original game assembly for reproducibility.
+The game and its assets belong to their respective rights holders.

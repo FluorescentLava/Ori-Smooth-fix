@@ -1,0 +1,28 @@
+{
+  "originalAssemblySHA256": "E6155FD8E6EFCF8EEEC79AA3817D25C4EE4315546E216C0BD332F341D04C9A58",
+  "patchedAssemblySHA256": "AED0FE920C134FE0D1DA066D68AD868A36596D5F0D9ADD79CC1A55F2684AED59",
+  "motionModuleSHA256": "CD91BB5950C5EAE516D58E91525A93AA96C3D7E9DF147341F8C8124033542D85",
+  "comparedGameTypes": 2417,
+  "comparedGameMethods": 13257,
+  "modifiedGameMethods": [
+    "UberGhostTrail::Update",
+    "UberGhostTrailMeshUpdate::ReallocateBuffers",
+    "UberGhostTrailMeshUpdate::SetSettings",
+    "UberGhostTrailMeshUpdate::SpawnSingleTrailSprite",
+    "UberGhostTrailMeshUpdate::UpdateQuads",
+    "UberGhostTrailMeshUpdate::RemoveQuad",
+    "UberGhostTrailMeshUpdate::UpdateTrailMesh",
+    "UberGhostTrailMeshUpdate::UpdateMeshVertPart",
+    "GameController::Awake",
+    "GameController::Update"
+  ],
+  "addedCacheFields": [
+    "System.Boolean UberGhostTrailMeshUpdate::m_oriMeshTopologyDirty",
+    "UnityEngine.Vector4 UberGhostTrailMeshUpdate::m_oriLastUploadedAtlas"
+  ],
+  "originalTrailMeshIsSingleDynamicMesh": true,
+  "reflectedPrivateFieldsPresent": true,
+  "helperHasFileIOOrPhysicsBodyWrites": false,
+  "helperConfiguresPhysicsSyncFlag": true,
+  "passed": true
+}

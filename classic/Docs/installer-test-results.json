@@ -1,0 +1,15 @@
+{
+    "testedPowerShellVersion":  "5.1.26100.9818",
+    "filesCopied":  [
+                        "dxgi.dll",
+                        "dxgi.ini",
+                        "ori_Data\\Managed\\Assembly-CSharp.dll",
+                        "ori_Data\\Managed\\OriMotionSmoothing.dll"
+                    ],
+    "unrecognizedExistingAssemblyOverwritten":  true,
+    "repeatedInstallPassed":  true,
+    "generatedBackupsOrTemporaryFiles":  false,
+    "settingsAndUnrelatedFilePreserved":  true,
+    "packagePowerShellSyntaxPassed":  true,
+    "passed":  true
+}

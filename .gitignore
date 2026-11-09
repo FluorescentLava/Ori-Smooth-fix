@@ -1,5 +1,6 @@
-# Game-owned assemblies are generated locally and shipped only in the DE release.
+# Game-owned assemblies are generated locally and shipped only in releases.
 de/Payload/oriDE_Data/
+classic/Payload/ori_Data/
 **/Build/
 **/.intermediate/
 **/__pycache__/

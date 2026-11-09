@@ -1,17 +1,47 @@
-# Ori Classic Smooth fix — experimental
+# Ori Smooth fix — 2015 原版
 
-Windows Steam《精灵与森林》2015 普通版，AppID 261570。
+适用于 Windows Steam《Ori and the Blind Forest》2015 原版（AppID 261570）。
 
 **解压 → 双击 `Install.cmd` → 以后照常启动游戏。**
 
-安装器直接修改玩家自己的 `ori_Data/Managed/Assembly-CSharp.dll`，解除渲染目标帧率并关闭引擎垂直同步；复制 Special K 的 32 位本地插件与四核心报告/不限帧配置。不会生成备份，不做版本或哈希门槛，不写 Steam 参数，不需要特殊启动器。普通玩家无需安装 .NET SDK 或编译工具。
+`classic` 和 `de` 区分的是游戏版本，两者均提供完整的流畅度修复功能。本包已取代旧的 `classic-v1.0.0-experimental` 基础解锁包。
 
-这是普通版的**基础解锁实验包**。本机没有普通版游戏文件，因此尚未完成普通版实际运行验收。此包不包含 DE 的预编译游戏程序集，也不宣称包含 DE 版的镜头/角色插值、逐帧拖尾或拖尾上传缓存优化。代码已经通过合成程序集的执行测试；测试范围见 `Docs/Validation.md`。
+- 解除渲染帧率上限，运行时关闭引擎 VSync。
+- 镜头和角色视觉位置按渲染帧插值。
+- 使用原生非同步时序，保留 60 Hz 物理步长。
+- 角色拖尾在插值后的视觉位置生成，每个渲染帧更新完整拖尾网格。
+- 缓存未变化的拖尾网格拓扑、UV 和材质提交，减少重复上传。
+- 附带 Special K 的 32 位本地插件与不限帧配置。
 
-Special K 的 DXGI 呈现与核心报告配置沿用 DE 配置，普通版的实际加载和性能效果尚未验证；基础帧率/VSync 补丁本身不依赖 Special K 成功加载。
+安装器直接覆盖四个运行文件，不生成备份、不做版本或哈希检查、不写 Steam 参数，不需要专用启动器、.NET SDK 或编译工具。也可以把 `Payload` **里面**的内容直接覆盖到 `ori.exe` 所在目录。下次正常启动即生效。
 
-找不到安装目录时，把包内全部内容放到 `ori.exe` 旁再双击 `Install.cmd`，也可执行 `Install.cmd -GameDirectory "D:\SteamLibrary\steamapps\common\Ori"`。
+自动定位失败时，把安装包放在 `ori.exe` 旁边后运行 `Install.cmd`，也可执行：
 
-`Source/Patch-Classic.ps1` 是完整补丁源码；`Source/lib/Mono.Cecil.dll` 是兼容 Windows PowerShell 5.1 的安装依赖。普通版未知布局的 `settings.bin` 不会被修改；运行时只在值发生变化时设置引擎帧率和 VSync。
+```powershell
+Install.cmd -GameDirectory "D:\SteamLibrary\steamapps\common\Ori"
+```
 
-恢复游戏原程序集可使用 Steam 验证游戏文件；插件文件是游戏目录的 `dxgi.dll`、`dxgi.ini`。
+安装后的文件：
+
+```text
+Ori/
+  dxgi.dll
+  dxgi.ini
+  ori_Data/Managed/
+    Assembly-CSharp.dll
+    OriMotionSmoothing.dll
+```
+
+游戏目录内的 `ori_Data` 是原版目录；DE 使用 `oriDE_Data`。两个游戏的程序集不可交叉替换。
+
+渲染不限帧会增加负载；实际帧率取决于硬件、场景和温度。位置插值和拖尾按渲染帧更新，原游戏逐帧制作的角色动画素材仍使用原来的动画帧数。
+
+验证记录见 `Docs/Validation.md`。本包基于实际原版程序集构建；发行包包含预编译文件，源码仓库提供可复现的补丁构建脚本。开发者使用 PowerShell 7 和 .NET SDK 构建：
+
+```powershell
+pwsh -File Source/Build.ps1 -GameDirectory "D:\SteamLibrary\steamapps\common\Ori" -OriginalAssembly "D:\Original\Assembly-CSharp.dll" -OutputDirectory "D:\Build\Ori-Classic"
+```
+
+`OriginalAssembly` 必须指向未修改的原版程序集；省略时使用游戏当前的程序集。构建与测试脚本只面向开发者，普通玩家直接安装发行包即可。
+
+卸载时关闭游戏，删除游戏目录的 `dxgi.dll`、`dxgi.ini` 和 `ori_Data/Managed/OriMotionSmoothing.dll`，再用 Steam 验证游戏文件恢复原版程序集。

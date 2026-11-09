@@ -1,16 +1,37 @@
-# 普通版验证范围
+# 2015 原版验证记录
 
-发布状态：实验包，建议作为 GitHub prerelease 发布。
+本记录对应完整的 Classic v4.0.0，适用于 Steam AppID 261570；它与 DE 区分的是游戏版本，提供相同的补丁功能。
 
-- Windows PowerShell 5.1 下加载官方 Mono.Cecil 0.11.6 的 .NET Framework 4.0 版本。
-- 用自建的 Unity API / GameController 合成程序集验证注入后实际执行结果，不使用或分发来源不明的游戏程序集。
-- 覆盖原方法正常返回、分支返回、游戏再次写入帧率/VSync、重复安装、无备份/临时文件、其他代码执行保留等情况。
-- 值相同时不重复调用 Unity 设置器。
-- 没有普通版实际游戏运行测试，也没有普通版 FPS 数据。
-- DE 的运动和拖尾代码依赖 DE 的 PhysicsLimitTest、GameplayCamera、SeinCharacter、UberGhostTrail 等接口，当前普通版包不含这些未验证的接口假设。
+实际原版的引擎版本为 Unity 5.0.0b5。补丁使用原版自己的程序集构建，摄像机组件的 OnPreCull / OnPostRender 消息替代此引擎缺少的全局 Camera 回调。原生 PhysicsLimitTest 的非同步选项遗留了同步标记，辅助模块在配置时清除该标记，使 SyncFramesTest 保持正常 timeScale。
 
-原版模组工具可确认原版使用 `ori_Data/Managed/Assembly-CSharp.dll` 的程序集修改模式：[Ori Controller Remap](https://github.com/beatcracker/Ori-Controller-Remap)。
+## 构建与安装
 
-Unity 帧率接口：[Application.targetFrameRate](https://docs.unity3d.com/ScriptReference/Application-targetFrameRate.html)、[QualitySettings.vSyncCount](https://docs.unity3d.com/ScriptReference/QualitySettings-vSyncCount.html)。
+- 对比原程序集的 2,417 个类型、13,257 个方法，只修改预期的 10 个方法，新增两个拖尾缓存字段。详见 [静态比较结果](patch-verification.json)。
+- 辅助模块没有文件读写、物理步长修改或刚体状态写入。最终源码重建与实测的两个生产 DLL 逐字节相同。
+- Windows PowerShell 5.1 隔离安装和重复安装通过；四个运行文件直接替换，无版本/哈希门槛，不生成备份，不修改 Steam 参数或 settings.bin。详见 [安装器测试](installer-test-results.json)。
+- 本机随后使用同一安装器安装正式 Payload，两个 DLL 的哈希与发布候选相同。正式程序集保留原存档目录，不引用诊断模块。
 
-安装器里的方法存在性判断是生成有效 IL 所需的结构要求，不要求版本确认，也没有已知哈希白名单。
+## 实机显示与时序
+
+测试使用 RTX 5060 Laptop GPU、1920×1080 游戏分辨率、165 Hz 显示器，在火山区域使用原存档的隔离副本进行移动、掉落和检查点恢复。临时诊断模块记录帧末时间、物理坐标及摄像机 OnPreRender 时的实际显示坐标；诊断模块和存档副本不包含在 Release 中。
+
+- 零图形启动参数下实际使用 DX11 和多线程渲染（threaded=1）；游戏目录的 dxgi.dll 已加载。
+- 完整功能开启的 32.34 秒移动样本包含 8,211 帧，平均 **253.88 FPS**，帧时间中位数 **3.88 ms**，P99 **6.98 ms**。这是局部带诊断采样的应用渲染帧率，不是全图稳定 165 FPS 的保证，也不是呈现间隔测量。
+- 在物理时间未变化的 6,274 对连续渲染帧中，角色显示坐标有 4,049 对发生变化，镜头有 6,249 对变化；物理角色坐标变化为零。角色静止或受动作限制时不要求每帧改变显示坐标。
+- 禁用显示插值与拖尾修改作对照时，16,310 对相同物理时间的连续帧中，角色显示坐标与镜头坐标的变化均为零。对照仍保留不限帧与原生非同步时序，用于核对插值效果。
+- 三种模式均记录到 timeScale=1、fixedDeltaTime=1/60、targetFrameRate=-1、VSync=0、物理选项2、IsSynced=false。
+- 移动期间记录到实际拖尾网格更新；不把 Update 入口或 SpawnSingleTrailSprite 的调用次数当作成功发射数量。
+
+不同模式的移动路径和场景负载不同，因此不以它们之间的 FPS 差计算补丁或缓存的性能收益。详细数据见 [运行汇总](runtime-validation.json)。
+
+## 拖尾缓存数据
+
+另一次独立运行对实际提交后的引擎网格进行 240 次抽查：缓存开启 127 次、关闭 113 次，全部通过。逐项比较完整顶点、UV、UV2、颜色、每个子网格的四边形索引、sharedMesh、材质引用、贴图和材质参数。原版使用单个动态网格；GetIndices 保留其 Quads 拓扑，未使用会转成三角形的 mesh.triangles 进行错误比较。
+
+网格读回会分配内存；该次抽查数据不参与上面的性能统计。此结果说明采样范围内缓存内容一致，不代表整个渲染工作已移到 GPU。
+
+## 边界
+
+原有约 30 FPS 的角色姿态素材仍保持原动画帧数。位置插值可能增加最多一个物理步（约16.7 ms）的显示延迟。没有遍历全地图、全部技能或全部硬件，四核心报告配置也未证明对所有电脑最优。渲染不限帧会增加负载，不能保证温度或风扇噪声降低。
+
+测试前后核对了原存档及其五个备份和 settings.bin，七个文件的 SHA256 均未变化。运行诊断使用单独的存档目录；生产程序集和 Release 不带自动读档、自动移动、存档重定向、性能探针或文件轮询。
